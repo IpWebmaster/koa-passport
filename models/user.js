@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const _ = require('lodash');
 const config = require('config');
+const uniqueValidator = require('mongoose-unique-validator');
 
 var userSchema = new mongoose.Schema({
   displayName:   {
@@ -66,6 +67,10 @@ userSchema.methods.checkPassword = function(password) {
   return crypto.pbkdf2Sync(password, this.salt, config.crypto.hash.iterations, config.crypto.hash.length) == 
     this.passwordHash;
 };
+
+userSchema.plugin(uniqueValidator, {
+  message: 'Ошибка: {PATH} уже существует.' }
+);
 
 module.exports = mongoose.model('User', userSchema);
 

@@ -7,7 +7,7 @@ html
 
   body
     .container
-      form(action="/login" method="post" name="auth")
+      form(action="/login" method="post" name="auth" onsubmit="AJAXSubmit(this); return false;")
         h1 Please sign in
 
 

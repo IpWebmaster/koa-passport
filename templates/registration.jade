@@ -7,7 +7,7 @@ html
 
     body
         .container
-            form(action="/registration" method="post" name="auth")
+            form(action="/registration" method="post" name="registration" onsubmit="AJAXSubmit(this); return false;")
                 h1 Регистрация
 
                 .form-group
@@ -18,7 +18,7 @@ html
                     input.form-control(type="password" id="password" name="password" required)
                 .form-group
                     label(for="password-confirm") Подтверждение пароля
-                    input.form-control(type="password" id="password-confirm" name="password-confirm" required)
+                    input.form-control(type="password" id="password-confirm" name="password_confirm" required)
 
                 button.btn.btn-lg.btn-primary.btn-block(type="submit") Login
 

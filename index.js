@@ -35,7 +35,7 @@ router.get('/', require('./routes/frontpage').get);
 router.post('/login', require('./routes/login').post);
 router.get('/logout', require('./routes/logout').post);
 router.get('/registration', require('./routes/registration').get);
-router.get('/registration', require('./routes/registration').post);
+router.post('/registration', require('./routes/registration').post);
 // router.get('/', require('./routes/login').post);
 
 app.use(router.routes());

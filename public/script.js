@@ -1,12 +1,23 @@
-document.forms.auth.onsubmit = function() {
+function AJAXSubmit (oFormElement) {
+  if (!oFormElement.action) {
+    return;
+  }
+
   var json = JSON.stringify({
-    email: document.forms.auth.email.value,
-    password: document.forms.auth.password.value
+    email: oFormElement.email.value,
+    password: oFormElement.password.value,
+    passwordConfirm: oFormElement.password_confirm.value
   });
-  // отослать
+
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", '/login', true);
-  xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-  xhr.send(json);
-  return false;
-};
+  xhr.onload = ajaxSuccess;
+  if (oFormElement.method.toLowerCase() === "post") {
+    xhr.open("post", oFormElement.action, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+  }
+}
+
+function ajaxSuccess () {
+  console.log(this.responseText);
+}
